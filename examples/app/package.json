@@ -8,7 +8,9 @@
     "liu": "liu"
   },
   "dependencies": {
-    "liu-cli": "1.0.0"
+    "antd": "^5.8.1",
+    "liu-cli": "1.0.0",
+    "react": "^18.2.0"
   },
   "keywords": [],
   "author": "",
