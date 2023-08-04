@@ -1,6 +1,6 @@
-const copydir = require('copy-dir');
-const fs = require('fs');
-const path = require('path');
+import path from "path";
+import fs from "fs";
+import copydir from "copy-dir";
 
 /**
  * @description 复制文件 
@@ -11,7 +11,7 @@ const path = require('path');
  * @param {*} to
  * @param {*} options
  */
-const copyDir = (from, to, options) => {
+export const copyDir = (from, to, options) => {
   // 同步复制
   // 这东西不能自动创建目录。
   mkdirGuard(to);
@@ -25,7 +25,7 @@ const copyDir = (from, to, options) => {
  * @date 02/08/2023
  * @param {*} target
  */
-const mkdirGuard = (target) => {
+export const mkdirGuard = (target) => {
     if (!fs.existsSync(target)) {
       fs.mkdirSync(target, { recursive: true });
     }
@@ -38,7 +38,7 @@ const mkdirGuard = (target) => {
  * @param {*} path
  * @returns {*} boolean
  */
-const checkMkdirExists = (path) => {
+export const checkMkdirExists = (path) => {
   return fs.existsSync(path)
 };
 
@@ -49,7 +49,7 @@ const checkMkdirExists = (path) => {
  * @param {*} filePath
  * @returns {*} void
  */
-const checkFileExists= (filePath) => {
+export const checkFileExists= (filePath) => {
   fs.access(filePath, fs.constants.F_OK, (err) => {
     if (err) {
         console.log('该文件、文件夹不存在');
@@ -66,7 +66,7 @@ const checkFileExists= (filePath) => {
  * @param {*} from
  * @param {*} to
  */
-const  copyFile = (from, to) => {
+export const  copyFile = (from, to) => {
   const parentPath = path.dirname(to);
   mkdirGuard(parentPath)
   const buffer = fs.readFileSync(from);
@@ -75,8 +75,10 @@ const  copyFile = (from, to) => {
 }
 
 // copyFile 和 copyDir 使用的区别在参数，copyFile 要求参数 from 和参数 to 都精确到文件路径。
-exports.mkdirGuard = mkdirGuard
-exports.checkMkdirExists = checkMkdirExists;
-exports.copyDir = copyDir;
-exports.checkFileExists = checkFileExists;
-exports.copyFile = copyFile;
+export default {
+  mkdirGuard,
+  checkMkdirExists,
+  copyDir,
+  checkFileExists,
+  copyFile
+}

@@ -1,14 +1,19 @@
 #!/usr/bin/env node
-const process = require('process');
-const yargs = require('yargs');
-const {inquirePrompt} = require('./inquirerPrompt')
-const { checkMkdirExists, copyDir, copyFile } = require('./copy');
-const path = require('path');
-const { readTemplate } = require('./makeTpl')
-const { install } = require("./ inquirer")
+import process from "process";
+import { inquirePrompt } from "./inquirerPrompt.js";
+import { checkMkdirExists, copyDir, copyFile } from "./copy.js";
+import path from "path";
+import { readTemplate } from "./makeTpl.js";
+import { install } from "./ inquirer.js";
+import yargs from "yargs";
+import { hideBin } from 'yargs/helpers'
+import { dirname }from 'path';
+import { fileURLToPath } from 'url';
+const fullPath = fileURLToPath(import.meta.url);
+const directoryPath = dirname(fullPath);
 // Yargs 通过解析参数和生成优雅的用户界面，帮助你构建交互式命令行工具。
 // example: pnpm liu --name=orderPage
-yargs.command(
+yargs(hideBin(process.argv)).command(
   ['create', 'c'],
   '新建一个模板',
   function (yargs) {
@@ -41,7 +46,7 @@ yargs.command(
          console.log(`${name}文件已存在于${path.resolve(process.cwd(),`./template/${name}/index.jsx`)}`);
       } else {
           copyFile(
-            path.resolve(__dirname, `./template/${type}/index.txt`),
+            path.resolve(directoryPath, `./template/${type}/index.txt`),
             path.resolve(process.cwd(), `./template/${name}/index.jsx`),
           )
           readTemplate(path.resolve(process.cwd(), `./template/${name}/index.jsx`),{

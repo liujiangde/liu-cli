@@ -27,5 +27,6 @@ name orderPage
 功能设想：
 用户可以自己创建模板，保存到本地，这边添加个路径记录，直接复制
 
-
-
+发布：
+npm adduser --registry https://registry.npmjs.org/
+pnpm publish --F liu-template-cli --registry https://registry.npmjs.org/

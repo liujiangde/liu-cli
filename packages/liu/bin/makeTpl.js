@@ -1,12 +1,13 @@
-const  Mustache  = require('Mustache')
-const fs = require('fs');
-const {mkdirGuard} = require('./copy')
+import Mustache from "Mustache";
+import fs from "fs";
+import { mkdirGuard } from "./copy.js";
+
 /**
  * 
  * @param {*} path, 文件路径
  * @param {*} data, 数据
  */
-const readTemplate = (path, data) => {
+export const readTemplate = (path, data) => {
   mkdirGuard(path)
   const file = fs.readFileSync(path, 'utf8')
   const output = Mustache.render(file, data);
@@ -14,4 +15,6 @@ const readTemplate = (path, data) => {
   fs.writeFileSync(path, output)
 }
 
-exports.readTemplate = readTemplate
+export default {
+  readTemplate
+}

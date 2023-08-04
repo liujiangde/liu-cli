@@ -1,11 +1,11 @@
-const inquirer = require('inquirer');
+import inquirer from "inquirer";
 // 这玩意返回一个promise
 // inquirer 开源库的三个方面的能力
 // 询问用户问题
 // 获取并解析用户的输入
 // 检测用户的答案是否合法
 //  example：  pnpm liu c --n=afe
-const inquirePrompt = (argv) => {
+export const inquirePrompt = (argv) => {
   const { name } = argv
   return  inquirer.prompt([{
       type: 'input',
@@ -74,4 +74,6 @@ const inquirePrompt = (argv) => {
   }).catch(error => reject(error))
 }
 
-exports.inquirePrompt = inquirePrompt;
+export default {
+  inquirePrompt
+}
