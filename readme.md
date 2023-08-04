@@ -3,13 +3,14 @@
     "liu" : "/bin/index.js"
   },
 
-然后再目录下执行pnpm link 
+然后再目录下执行pnpm/npm link 
 这个时候link是在全局添加的软链接
 查看方式
-pnpm ls -g
-移除该link的方式
-pnpm unlink -g {packagejson里面name属性值}
+pnpm/npm ls -g
 
+移除该link的方式
+加入到它指定的目录 pnpm remove liu-cli -g
+npm unlink -g {packagejson里面name属性值}
 
 注意：
 1： npm 和pnpm 的link仓库是不同的
