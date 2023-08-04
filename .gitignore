@@ -2,3 +2,5 @@ node_modules/
 dist/
 eslintError.html
 .eslintcache
+/packages/app/node_modules/
+/examples/liu/node_modules/
